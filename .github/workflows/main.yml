@@ -5,12 +5,17 @@ on:
     branches:
       - master
   pull_request:
+  watch:
+    types: [ started ]
 
 jobs:
+
   build:
-    name: build
+
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+
+    if: github.actor == github.event.repository.owner.login
+
     steps:
 
     - name: Checkout
@@ -28,4 +33,4 @@ jobs:
     - name: Build workspace
       uses: ./
       with:
-        arguments: -x 'compileScalaModule rocketchipScalaModule'
+        arguments: -x rocketchipScalaModule.compileScalaModule

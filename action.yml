@@ -9,4 +9,6 @@ inputs:
     default: ''
 runs:
   using: 'docker'
+  ## image: 'davidmlw/alpine:alpine-3.10'
+  ## entrypoint: './entrypoint.sh'
   image: 'Dockerfile'
