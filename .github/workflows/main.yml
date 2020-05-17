@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Prepare workspace
+      uses: sifive/wit/actions/wit@master
+      with:
+        command: init
+        arguments: |
+          workspace
+          -a git@github.com:chipsalliance/rocket-chip.git
+        force_github_https: true
+
+    - name: Build workspace
+      uses: ./
+      with:
+        arguments: -x 'compileScalaModule rocketchipScalaModule'

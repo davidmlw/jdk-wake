@@ -1,0 +1,12 @@
+name: 'jdk-wake'
+author: 'Liwei Ma <liwei.ma@sifive.com>'
+description: 'Run a Wake with api-scala-sifive supported.'
+inputs:
+  arguments:
+    description: |
+      Wake actions. `wake --init .` has been executed and wake.db has bee generated.
+    required: false
+    default: ''
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
