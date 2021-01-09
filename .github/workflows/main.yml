@@ -33,4 +33,4 @@ jobs:
     - name: Build workspace
       uses: ./
       with:
-        arguments: --no-workspace -x rocketchipScalaModule.compileScalaModule
+        arguments: -x rocketchipScalaModule.compileScalaModule
