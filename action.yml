@@ -8,7 +8,15 @@ inputs:
     required: false
     default: ''
 runs:
-  using: 'docker'
+  using: 'composite'
   ## image: 'davidmlw/alpine:alpine-3.10'
   ## entrypoint: './entrypoint.sh'
-  image: 'Dockerfile'
+  steps:
+    - run: |
+        set -xeuo pipefail
+        docker run --rm \
+          --device /dev/fuse --cap-add SYS_ADMIN --security-opt apparmor:unconfined \
+          --volume="$GITHUB_WORKSPACE/${{ inputs.workspace }}:/mnt/workspace" --workdir="/mnt/workspace" \
+          davidmlw/alpine:jdk-3.10 \
+          wake ${{ inputs.command }}
+      shell: bash
