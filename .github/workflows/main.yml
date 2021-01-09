@@ -30,6 +30,11 @@ jobs:
           -a git@github.com:chipsalliance/rocket-chip.git
         force_github_https: true
 
+    - name: init workspace
+      uses: ./
+      with:
+        arguments: --init .
+
     - name: Build workspace
       uses: ./
       with:
