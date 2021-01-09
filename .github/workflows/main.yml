@@ -33,9 +33,9 @@ jobs:
     - name: init workspace
       uses: ./
       with:
-        arguments: --init .
+        command: --init .
 
     - name: Build workspace
       uses: ./
       with:
-        arguments: -x rocketchipScalaModule.compileScalaModule
+        command: -x rocketchipScalaModule.compileScalaModule
