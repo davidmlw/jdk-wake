@@ -1,12 +1,26 @@
 name: 'jdk-wake'
-author: 'Liwei Ma <liwei.ma@sifive.com>'
-description: 'Run a Wake with api-scala-sifive supported.'
+author: 'Liwei Ma <liwei.ma@gmail.com>'
+description: 'Invoke wake inside the alpine container'
 inputs:
-  arguments:
+  command:
     description: |
-      Wake actions. `wake --init .` has been executed and wake.db has bee generated.
+      The command which will be executed by wake inside the workspace.
+      By default, wake will simply type-check the build system.
     required: false
-    default: ''
+    default: '-x Unit'
+  workspace:
+    description: |
+      The location (relative to the build directory) of the root of the wit
+      workspace.  This should typically match wherever wit/actions/init ran.
+    required: false
+    default: .
+  version:
+    description: |
+      The version of the environment-blockci-sifive docker image to use.  By
+      default, the same version is used as the release tag of the action.
+    required: false
+    default: master
+
 runs:
   using: 'composite'
   ## image: 'davidmlw/alpine:alpine-3.10'
@@ -17,6 +31,6 @@ runs:
         docker run --rm \
           --device /dev/fuse --cap-add SYS_ADMIN --security-opt apparmor:unconfined \
           --volume="$GITHUB_WORKSPACE/${{ inputs.workspace }}:/mnt/workspace" --workdir="/mnt/workspace" \
-          davidmlw/alpine:jdk-3.10 \
+          davidmlw/alpine:jdk-3.11 \
           wake ${{ inputs.command }}
       shell: bash
