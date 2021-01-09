@@ -28,7 +28,10 @@ jobs:
         arguments: |
           workspace
           -a git@github.com:chipsalliance/rocket-chip.git
+          -a git@github.com:turbofive/scala.git
         force_github_https: true
+        http_auth_username: davidmlw
+        http_auth_token: ${{ secrets.githubpass }}
 
     - name: init workspace
       uses: ./
