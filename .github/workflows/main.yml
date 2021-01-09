@@ -27,7 +27,7 @@ jobs:
         command: init
         arguments: |
           workspace
-          -a git@github.com:chipsalliance/rocket-chip.git
+          -a git@github.com:chipsalliance/rocket-chip.git::4c66d838
           -a git@github.com:turbofive/scala.git
         force_github_https: true
         http_auth_username: davidmlw

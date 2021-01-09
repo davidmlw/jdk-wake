@@ -31,6 +31,6 @@ runs:
         docker run --rm \
           --device /dev/fuse --cap-add SYS_ADMIN --security-opt apparmor:unconfined \
           --volume="$GITHUB_WORKSPACE/${{ inputs.workspace }}:/mnt/workspace" --workdir="/mnt/workspace" \
-          davidmlw/alpine:jdk-3.11 \
+          turbofive/alpine:jdk-3.10 \
           wake ${{ inputs.command }}
       shell: bash
